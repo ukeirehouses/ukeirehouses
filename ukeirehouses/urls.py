@@ -20,6 +20,8 @@ urlpatterns = patterns('ukeirehouses.views',
                        (r'^send-message/request/(?P<id>\d+)/', 'send_request_message'),
                        (r'^send-message/offer/(?P<id>\d+)/', 'send_offer_message'),
                        (r'^send-message-action/', 'send_message_action'),
+                       (r'^sent-message/', 'sent_message'),
+                       
 
                        (r'^lang/(?P<lang>.+)/', 'set_lang'),
                        

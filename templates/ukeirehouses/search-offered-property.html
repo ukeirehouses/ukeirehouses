@@ -129,7 +129,7 @@ count : {{ offers.count }}
 <li>{{ offer.get_address_verbose_name }} : {{ offer.address }}</li>
 <li><a href="{{ offer.url }}">{{ offer.url }}</a></li>
 <li>{{ offer.get_status_display }}</li>
-<li><a href="/send-message/request/{{ offer.id }}/">{% trans "send message" %}</a>
+<li><a href="/offer-details/{{ offer.id }}/">{% trans 'view dtails' %}</a></li>
 
 </ul>
 {% endfor %}

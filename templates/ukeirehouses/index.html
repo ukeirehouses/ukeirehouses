@@ -6,17 +6,17 @@ TOP
 {% endblock %}
 
 {% block content %}
-<p>{% trans "offers" %} : {{ offers_count }}</p>
-<p>{% trans "requests" %} : {{ requests_count }}</p>
+<p>{% trans "offers" %} : {{ offers_count }}, {% trans "requests" %} : {{ requests_count }}</p>
 
 <h2>受け入れハウス</h2>
 <p>罹災者と支援者を結ぶための情報共有の場です。</p>
-
+{% if not user.is_authenticated %}
+<p>受け入れを提供、またはリクエストされる方は<a href="/accounts/register/">ユーザー登録</a>をおねがいいたします。</p>
+{% endif %}
 <h2>新着リスト</h2>
 
-<h3><a href="/offer-details/{{ offer.id }}/">{{ offer.title }}</a></h3>
-
 {% for offer in offers %}
+<h3><a href="/offer-details/{{ offer.id }}/">{{ offer.title }}</a></h3>
 <ul>
 <li>{{ offer.get_classfication_verbose_name }} : {{ offer.get_classfication_display }}</li>
 <li>{{ offer.get_room_type_verbose_name }} : {{ offer.get_room_type_display }}</li>

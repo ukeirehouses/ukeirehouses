@@ -9,7 +9,7 @@ from django.contrib.formtools.preview import FormPreview
 
 from google.appengine.ext import db
 
-from ukeirehouses.models import PropertyOffer, PropertyRequest
+from ukeirehouses.models import PropertyOffer, PropertyRequest, Message
 from ukeirehouses.models import PropertyOfferForm, PropertyRequestForm
 
 from google.appengine.api import images
@@ -36,7 +36,7 @@ def offer_property_confirm(request):
 
 def offer_details(request, id):
     offer = PropertyOffer.objects.get(id=id)
-    return render_to_response('ukeirehouses/offer-details.html', {'offer':offer})
+    return direct_to_template(request, 'ukeirehouses/offer-details.html', {'offer':offer})
     
 @login_required
 def add_property_action(request):
@@ -112,12 +112,23 @@ def send_offer_message(request, id):
 
 def send_message_action(request):
     id = request.POST['id']
-    message = 'message' #request.POST['message']
+    message = request.POST['message']
 
     offer = PropertyOffer.objects.get(id=id)
+
+    new_message = Message()
+    new_message.from_user = request.user
+    new_message.to_user = offer.user
+    new_message.message = message
+
+    new_message.save()
+
     offer.user.email_user('Subject', message)
 
-    return redirect('/')
+    return redirect('/sent-message/')
+
+def sent_message(request):    
+    return direct_to_template(request, 'ukeirehouses/sent-message.html')
 
 # util
 

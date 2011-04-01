@@ -78,7 +78,12 @@
 <li>{{ offer.address }}</li>
 <li><a href="{{ offer.url }}">{{ offer.url }}</a></li>
 <li>{{ offer.get_status_display }}</li>
+{% if user.is_authenticated %}
 <li><a href="/send-message/request/{{ offer.id }}/">{% trans "send message" %}</a>
+{% else %}
+<li><a href="/accounts/login/?next=/offer-details/{{ offer.id }}/">{% trans "Please login if you want to send message" %}</a></li>
+
+{% endif %}
 </ul>
 <div id="map_canvas"></div>
 

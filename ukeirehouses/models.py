@@ -31,6 +31,11 @@ class UserProfile(models.Model):
         html += "</ul>"
 
         return html
+class Message(models.Model):
+    from_user = models.ForeignKey(User)
+    to_user = models.ForeignKey(User)
+    message = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
 
 class PropertyRequest(models.Model):
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
@@ -94,6 +99,7 @@ class PropertyOffer(models.Model):
 
     details = models.TextField(_('Details'), default='')
     zipcode = models.CharField(_('Zipcode'), max_length=15, default='')
+    address_pref = models.CharField(_('Prefecture'), max_length=200, default='')
     address = models.CharField(_('Address'), max_length=200, default='')
     location = models.CharField(_('Location'), max_length=100, blank=True)
 
@@ -163,14 +169,16 @@ class PropertyOfferForm(BetterModelForm):
         widget=forms.DateTimeInput(format='%Y/%m/%d', attrs={}),
         initial=datetime.datetime.today()
     )
-#    logging.info(datetime.datetime.today().strftime("%Y/%m/%d"))
+    title = forms.CharField(widget=forms.TextInput(attrs={'size':'50'}))
+
+
     class Meta:
         model = PropertyOffer
         fieldsets = [(_('main'), {'fields': ['title', 'details', 'classfication', 'room_type', 'property_type', 'maximum_number_of_people_stay', 'maximum_number_of_family_group', 'possible_move_in_date', 'maximum_days_stay', 'price_per_day', 'status']}),
                      (_('stayable'), {'fields': ['stayable_person_male', 'stayable_person_female', 'stayable_person_baby', 'stayable_person_child', 'stayable_person_student', 'stayable_person_aged', 'stayable_person_family', 'stayable_person_pet']}),
                      (_('facility'), {'fields': ['facility_toilet', 'facility_bath', 'facility_airconditioning', 'facility_parking', 'facility_kitchen', 'facility_sleeping_gear']}),
                      (_('images'), {'fields': ['image1', 'image2', 'image3', 'image4', 'image5']}),
-                     (_('location'), {'fields': ['zipcode', 'address', 'url', 'location']}),
+                     (_('location'), {'fields': ['zipcode', 'address_pref', 'address', 'url', 'location']}),
                      ]
         row_attrs = {'location': {'style': 'display: none'}}
 

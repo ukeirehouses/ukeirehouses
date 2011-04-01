@@ -59,9 +59,9 @@
 {% endblock %}
 
 {% block sidebar %}
-<form post="POST" action="/search-offered-property">
+<form method="get" action="/search-offered-property/">
 <ul>
-  <li><label for="id_place">場所</label><input id="id_place" type="text" name="place" /></li>
+  <li><label for="id_place">{% trans 'Place' %}</label><input id="id_place" type="text" name="place" /></li>
   <li>{{ form.classfication.label_tag }} {{ form.classfication }}</li>
   <li>{{ form.room_type.label_tag }} {{ form.room_type }}</li>
   <li>{{ form.property_type.label_tag }} {{ form.property_type }}</li>
@@ -84,7 +84,7 @@
 
 {% block content %}
 <div id="map_canvas"></div>
-<h2>list</h2>
+<h2>{% trans "Offers" %}</h2>
 count : {{ offers.count }}
 {% for offer in offers %}
 <h3><a href="/offer-details/{{ offer.id }}/">{{ offer.title }}</a></h3>
