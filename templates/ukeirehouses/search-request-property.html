@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+{% trans 'Search Requested Property' %}
+{% endblock %}
+
+{% block content %}
+{% for request in requests %}
+<h3>{{ request.title }}</h3>
+<ul>
+<li>{{ request.get_description_verbose_name }} : {{ request.description }}</li>
+<li>{{ request.get_current_address_verbose_name }} : {{ request.current_address }}</li>
+<li>{{ request.get_looking_address_verbose_name }} : {{ request.looking_address }}</li>
+<li>{{ request.get_number_of_family_group_verbose_name }} : {{ request.number_of_family_group }}</li>
+<li>{{ request.get_number_of_people_verbose_name }} : {{ request.number_of_people }}</li>
+<li>
+  {% if request.has_male %}{{ request.get_has_male_verbose_name }},{% endif %} 
+  {% if request.has_female %}{{ request.get_has_female_verbose_name }},{% endif %}
+  {% if request.has_baby %}{{ request.get_has_baby_verbose_name }},{% endif %}
+  {% if request.has_child %}{{ requset.get_has_child_verbose_name }},{% endif %}
+  {% if request.has_student %}{{ request.get_has_student_verbose_name }},{% endif %}
+  {% if request.has_aged %}{{ request.get_has_aged_verbose_name }},{% endif %}
+  {% if request.has_family %}{{ request.get_has_family_verbose_name }},{% endif %}
+  {% if request.has_pet %}{{ request.get_has_pet_verbose_name }},{% endif %}
+</li>
+<li>{{ request.get_description_verbose_name }} : {{ request.description }}</li>
+<li><a href="/send-message/offer/{{ request.id }}/">{% trans 'Send Message' %}</a>
+
+</ul>
+{% endfor %}
+{% endblock %}

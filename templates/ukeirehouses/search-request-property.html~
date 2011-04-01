@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+{% trans 'Search Requested Property' %}
+{% endblock %}
+
+{% block content %}
+{% for request in requests %}
+<h3>{{ request.title }}</h3>
+<ul>
+<li>{{ request.description }}</li>
+<li>{{ request.current_address }}</li>
+<li>{{ request.looking_address }}</li>
+<li>{{ request.number_of_family_group }}</li>
+<li>{{ request.number_of_people }}</li>
+<li>{{ request.has_male }},{{ request.has_female }},{{ request.has_baby }},{{ request.has_child }},{{ request.has_student }},{{ request.has_aged }},{{ request.has_family }},{{ request.has_pet }}</li>
+<li>{{ request.description }}</li>
+<li><a href="/send-message/offer/{{ request.id }}/">{% trans 'Send Message' %}</a>
+
+</ul>
+{% endfor %}
+{% endblock %}

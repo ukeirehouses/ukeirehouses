@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+{% trans 'Offer Property' %}
+{% endblock %}
+
+{% block javascripts %}
+<script type='text/javascript' src='http://www.google.com/jsapi'></script>
+<script type='text/javascript'>google.load('jquery', '1.4.2');</script>
+<script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=false&language=ja' charset='UTF-8'></script>
+<script type="text/javascript" src="/javascripts/jquery.zip2addr.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  var mapdiv = document.getElementById('map_canvas');
+  var geocoder = new google.maps.Geocoder();
+  var org_lat = 35.6585873;
+  var org_lng = 139.7454247;
+
+  var point = new google.maps.LatLng(org_lat, org_lng);
+  var myOptions = {
+      zoom: 16,
+      center: point,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      scaleControl: true
+  };
+
+  var map = new google.maps.Map(mapdiv, myOptions);
+  var marker = new google.maps.Marker({
+      position: point,
+      map: map,
+      draggable: true
+  });
+
+  google.maps.event.addListener(marker, 'dragend', function() {
+      var p = marker.position;
+      $("#id_location").val(p.lat() + "," + p.lng());
+  });
+
+  $('#id_zipcode').zip2addr('#id_address');
+
+  $("#id_address").change(function() {
+    var sad = $("#id_address").val();
+    var geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode({ 'address': sad}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+
+        map.setCenter(results[0].geometry.location);
+        marker.setPosition(results[0].geometry.location);
+
+        var p = marker.position;
+        $("#id_location").val(p.lat() + "," + p.lng());
+      } else {
+        alert("住所から場所を特定できませんでした。最初にビル名などを省略し、番地までの検索などでお試しください。");
+      }
+    });
+
+    return false;
+
+  });
+});
+
+</script>
+
+{% endblock %}
+
+{% block pre-css %}
+<style type="text/css">
+#map_canvas {
+  width:100%;
+  height:300px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<h2>{% trans "Offer Property" %}</h2>
+<form method="post" action="/add-property-action/" enctype="multipart/form-data">
+<!-- {{ form.as_ul }} -->
+{{ form.errors }}
+
+{% if form.non_field_errors %}{{ form.non_field_errors }}{% endif %}
+{% for fieldset in form.fieldsets %}
+  <fieldset class="{{ fieldset.classes }}">
+  {% if fieldset.legend %}
+    <legend>{{ fieldset.legend }}</legend>
+  {% endif %}
+  {% if fieldset.description %}
+    <p class="description">{{ fieldset.description }}</p>
+  {% endif %}
+  <ul>
+  {% for field in fieldset %}
+    {% if field.is_hidden %}
+      {{ field }}
+    {% else %}
+      <li{{ field.row_attrs }}>
+        {{ field.errors }}
+        {{ field.label_tag }}
+        {{ field }}
+      </li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+  </fieldset>
+{% endfor %}
+<div id='map_canvas'></div>
+
+<input type="submit" value="{% trans 'Submit' %}" />
+</form>
+{% endblock %}

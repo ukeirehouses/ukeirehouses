@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+ <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+
+ <title>{% block title %}{% endblock %}</title>
+ <link rel="stylesheet" href="/style.css" type="text/css" />
+</head>
+<body>
+<div id="wrapper">
+ <!-- Header start -->
+ <div id="header">
+  <h1 id="title"><a href="#">ヘッダータイトル</a></h1>
+  <div id="description">サイトの概要またはサブタイトル</div>
+ </div>
+ <!-- Header end -->
+ <!-- navigation start -->
+ <div id="navigation">
+  <ul>
+   <li><a href="#" class="tabs" ><span>メニュー</span></a></li>
+   <li><a href="#" class="tabs" ><span>メニュー</span></a></li>
+   <li><a href="#" class="tabs" ><span>メニュー</span></a></li>
+   <li><a href="#" class="tabs" ><span>メニュー</span></a></li>
+  </ul>
+ </div>
+ <!-- navigation end -->
+ <!-- First sidebar start -->
+ <div id="firstSide" class="sidebar">
+  <h4>サイドバータイトル</h4>
+  <ul>
+   <li><a href="#" class="lists">リスト</a></li>
+   <li><a href="#" class="lists">リスト</a></li>
+   <li><a href="#" class="lists">リスト</a></li>
+   <li><a href="#" class="lists">リスト</a></li>
+   <li><a href="#" class="lists">リスト</a></li>
+  </ul>
+ </div>
+ <!-- First sidebar end -->
+ <!-- Second sidebar start -->
+ <div id="secondSide" class="sidebar">
+  <h4>サイドバータイトル</h4>
+  <ul>
+   <li><a href="#" class="lists">リスト</a></li>
+   <li><a href="#" class="lists">リスト</a></li>
+   <li><a href="#" class="lists">リスト</a></li>
+   <li><a href="#" class="lists">リスト</a></li>
+   <li><a href="#" class="lists">リスト</a></li>
+  </ul>
+ </div>
+ <!-- Second sidebar end -->
+ <!-- Main contents start -->
+ <div id="contents">
+   {% block content %}{% endblock %}
+ </div>
+ <!-- Main contents end -->
+
+
+ <div id="footer">
+ Base template by <a href="http://jp.cssez.com/">CSSEZ.com</a>.. 
+ </div>
+
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
+    xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
+    lang="{% firstof LANGUAGE_CODE 'en' %}">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    
+    {% block css %}
+    {% endblock %}
+
+    {% block preload_js %}
+    {% endblock %}
+
+    {% block extra-head %}{% endblock %}
+  </head>
+
+  <body>
+    <div id="header">
+      <a id="logo" href="/"></a>
+      <div id="languages">
+	<a href="/lang/ja">ja</a>
+	<a href="/lang/en">en</a>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div id="content" class="column">
+        {% block content-header %}
+          {% if error %}<div class="error">{{ error }}</div>{% endif %}
+          {% if info %}<div class="info">{{ info }}</div>{% endif %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="info">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+      </div>
+
+      <div id="sidebar" class="column">
+        {% block sidebar %}
+        {% endblock %}
+      </div>
+    </div>
+
+    <div id="footer">
+    </div>
+
+    {% block js %}
+    {% endblock %}
+  </body>
+</html>

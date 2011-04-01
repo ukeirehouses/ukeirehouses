@@ -1,0 +1,503 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-30 15:48+0900\n"
+"PO-Revision-Date: 2011-03-30 11:39+0900\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: registration/admin.py:23
+msgid "Activate users"
+msgstr ""
+
+#: registration/admin.py:43
+msgid "Re-send activation emails"
+msgstr ""
+
+#: registration/forms.py:35
+msgid "Username"
+msgstr ""
+
+#: registration/forms.py:36
+msgid "This value must contain only letters, numbers and underscores."
+msgstr ""
+
+#: registration/forms.py:39
+msgid "Email address"
+msgstr "メールアドレス"
+
+#: registration/forms.py:41
+msgid "Password"
+msgstr "パスワード"
+
+#: registration/forms.py:43
+msgid "Password (again)"
+msgstr "パスワード(確認)"
+
+#: registration/forms.py:55
+msgid "A user with that username already exists."
+msgstr "入力されたユーザー名はすでに存在します。"
+
+#: registration/forms.py:67
+msgid "The two password fields didn't match."
+msgstr "パスワードが一致しません。"
+
+#: registration/forms.py:78
+msgid "I have read and agree to the Terms of Service"
+msgstr "利用規約を読んで同意します。"
+
+#: registration/forms.py:79
+msgid "You must agree to the terms to register"
+msgstr "利用規約に同意して頂く必要があります。"
+
+#: registration/forms.py:95
+msgid ""
+"This email address is already in use. Please supply a different email "
+"address."
+msgstr ""
+"このメールアドレスはすでに使われています。別のアドレスを入力してください。"
+
+#: registration/forms.py:122
+msgid ""
+"Registration using free email addresses is prohibited. Please supply a "
+"different email address."
+msgstr ""
+"無料メールアドレスでの利用は禁止されています。別のアドレスを入力してくださ"
+"い。"
+
+#: registration/models.py:166
+msgid "user"
+msgstr "ユーザー"
+
+#: registration/models.py:167
+msgid "activation key"
+msgstr "アクティベーションキー"
+
+#: registration/models.py:172
+msgid "registration profile"
+msgstr "プロファイルを登録"
+
+#: registration/models.py:173
+msgid "registration profiles"
+msgstr "プロファイルを登録"
+
+#: templates/base.html:34 templates/ukeirehouses/add-property.html:6
+#: templates/ukeirehouses/add-property.html:80
+msgid "Offer Property"
+msgstr "受け入れを提供"
+
+#: templates/base.html:35
+msgid "Search Offered Property"
+msgstr "受け入れを検索"
+
+#: templates/base.html:36 templates/ukeirehouses/request-property.html:6
+#: templates/ukeirehouses/request-property.html:11
+msgid "Request Property"
+msgstr "受け入れリクエスト"
+
+#: templates/base.html:37
+#: templates/ukeirehouses/search-request-property.html:6
+msgid "Search Requested Property"
+msgstr "リクエストを検索"
+
+#: templates/base.html:39
+msgid "logout"
+msgstr ""
+
+#: templates/base.html:41
+msgid "login"
+msgstr "ログイン"
+
+#: templates/base.html:42
+msgid "register"
+msgstr "ユーザー登録"
+
+#: templates/ukeirehouses/add-property.html:111
+#: templates/ukeirehouses/request-property.html:38
+msgid "Submit"
+msgstr "登録"
+
+#: templates/ukeirehouses/index.html:9
+msgid "offers"
+msgstr "提供"
+
+#: templates/ukeirehouses/index.html:10
+msgid "requests"
+msgstr "リクエスト"
+
+#: templates/ukeirehouses/offer-details.html:81
+#: templates/ukeirehouses/search-offered-property.html:132
+msgid "send message"
+msgstr "メッセージを送る"
+
+#: templates/ukeirehouses/search-offered-property.html:5
+msgid "Search Offer Property"
+msgstr "受け入れを検索"
+
+#: templates/ukeirehouses/search-offered-property.html:64
+msgid "Place"
+msgstr ""
+
+#: templates/ukeirehouses/search-offered-property.html:81
+msgid "Search"
+msgstr "検索"
+
+#: templates/ukeirehouses/search-offered-property.html:87
+#, fuzzy
+msgid "Offers"
+msgstr "提供"
+
+#: templates/ukeirehouses/search-request-property.html:20
+msgid "Send Message"
+msgstr "メッセージを送る"
+
+#: ukeirehouses/models.py:18 ukeirehouses/models.py:37
+msgid "Title"
+msgstr "タイトル"
+
+#: ukeirehouses/models.py:19
+#, fuzzy
+msgid "Current Address"
+msgstr "住所"
+
+#: ukeirehouses/models.py:20
+#, fuzzy
+msgid "Looking Address"
+msgstr "住所"
+
+#: ukeirehouses/models.py:21
+msgid "Number of family group"
+msgstr ""
+
+#: ukeirehouses/models.py:22
+msgid "Number of people"
+msgstr ""
+
+#: ukeirehouses/models.py:23
+msgid "Male"
+msgstr ""
+
+#: ukeirehouses/models.py:24
+msgid "Female"
+msgstr ""
+
+#: ukeirehouses/models.py:25
+msgid "Baby"
+msgstr ""
+
+#: ukeirehouses/models.py:26
+msgid "Child"
+msgstr ""
+
+#: ukeirehouses/models.py:27
+#, fuzzy
+msgid "Student"
+msgstr "学生"
+
+#: ukeirehouses/models.py:28
+msgid "Aged"
+msgstr ""
+
+#: ukeirehouses/models.py:29
+msgid "Family"
+msgstr ""
+
+#: ukeirehouses/models.py:30
+msgid "Pet"
+msgstr ""
+
+#: ukeirehouses/models.py:31
+msgid "Description"
+msgstr ""
+
+#: ukeirehouses/models.py:38
+msgid "Indivisual"
+msgstr "個人"
+
+#: ukeirehouses/models.py:38
+msgid "NPO"
+msgstr "非営利団体"
+
+#: ukeirehouses/models.py:38
+msgid "Governmental"
+msgstr "国地方自治体等"
+
+#: ukeirehouses/models.py:38
+msgid "Company"
+msgstr "会社"
+
+#: ukeirehouses/models.py:39
+msgid "Classification"
+msgstr "提供者区分"
+
+#: ukeirehouses/models.py:40
+msgid "Shared Room"
+msgstr "ルームシェア"
+
+#: ukeirehouses/models.py:40
+msgid "Private Room"
+msgstr "個室"
+
+#: ukeirehouses/models.py:40
+msgid "Entire Home"
+msgstr "一軒家"
+
+#: ukeirehouses/models.py:41 ukeirehouses/models.py:43
+msgid "Room Type"
+msgstr "部屋のタイプ"
+
+#: ukeirehouses/models.py:42
+msgid "Apartment"
+msgstr "アパート"
+
+#: ukeirehouses/models.py:42
+msgid "House"
+msgstr "一軒家"
+
+#: ukeirehouses/models.py:42
+msgid "Hotel"
+msgstr "ホテル"
+
+#: ukeirehouses/models.py:44
+msgid "Maximum people can stay"
+msgstr "最大泊まれる人数"
+
+#: ukeirehouses/models.py:45
+msgid "Maximum family can stay"
+msgstr "最大泊まれる家族"
+
+#: ukeirehouses/models.py:46 ukeirehouses/models.py:136
+msgid "Possible move in date"
+msgstr "引っ越し可能な日"
+
+#: ukeirehouses/models.py:47
+msgid "Maxmum days can stay"
+msgstr "最大泊まれる日数"
+
+#: ukeirehouses/models.py:48
+msgid "Price per Day"
+msgstr "一日の宿泊費"
+
+#: ukeirehouses/models.py:49
+msgid "Male Stayable"
+msgstr "男性"
+
+#: ukeirehouses/models.py:50
+msgid "Female Stayable"
+msgstr "女性"
+
+#: ukeirehouses/models.py:51
+msgid "Baby Stayable"
+msgstr "赤ちゃん"
+
+#: ukeirehouses/models.py:52
+msgid "Child Stayable"
+msgstr "子供"
+
+#: ukeirehouses/models.py:53
+msgid "Student Stayable"
+msgstr "学生"
+
+#: ukeirehouses/models.py:54
+msgid "Aged Stayable"
+msgstr "老人"
+
+#: ukeirehouses/models.py:55
+msgid "Family Stayable"
+msgstr "家族"
+
+#: ukeirehouses/models.py:56
+msgid "With Pet Stayable"
+msgstr "ペット"
+
+#: ukeirehouses/models.py:57 ukeirehouses/models.py:58
+msgid "Available"
+msgstr "有り"
+
+#: ukeirehouses/models.py:57
+msgid "Shared"
+msgstr "共同"
+
+#: ukeirehouses/models.py:57 ukeirehouses/models.py:58
+msgid "Not Available"
+msgstr "無し"
+
+#: ukeirehouses/models.py:59
+msgid "Toilet"
+msgstr "トイレ"
+
+#: ukeirehouses/models.py:60
+msgid "Bath"
+msgstr "風呂"
+
+#: ukeirehouses/models.py:61
+msgid "Air-conditioning"
+msgstr "冷暖房装置"
+
+#: ukeirehouses/models.py:62
+msgid "Parking"
+msgstr "駐車場"
+
+#: ukeirehouses/models.py:63
+msgid "Kitchen"
+msgstr "キッチン"
+
+#: ukeirehouses/models.py:64
+msgid "Sleeping Gear"
+msgstr "寝具"
+
+#: ukeirehouses/models.py:66
+msgid "Details"
+msgstr "詳細"
+
+#: ukeirehouses/models.py:67
+msgid "Zipcode"
+msgstr "郵便番号"
+
+#: ukeirehouses/models.py:68
+msgid "Address"
+msgstr "住所"
+
+#: ukeirehouses/models.py:69
+msgid "Location"
+msgstr "緯度経度"
+
+#: ukeirehouses/models.py:72
+msgid "Vacancy"
+msgstr "空き"
+
+#: ukeirehouses/models.py:72
+msgid "Talking"
+msgstr "お話中"
+
+#: ukeirehouses/models.py:72
+msgid "Decited"
+msgstr "入居者決定済み"
+
+#: ukeirehouses/models.py:72
+msgid "Canceled"
+msgstr "キャンセル"
+
+#: ukeirehouses/models.py:73
+msgid "Status"
+msgstr "ステータス"
+
+#: ukeirehouses/models.py:74
+msgid "Image1"
+msgstr "画像1"
+
+#: ukeirehouses/models.py:75
+msgid "Image2"
+msgstr "画像2"
+
+#: ukeirehouses/models.py:76
+msgid "Image3"
+msgstr "画像3"
+
+#: ukeirehouses/models.py:77
+msgid "Image4"
+msgstr "画像4"
+
+#: ukeirehouses/models.py:78
+msgid "Image5"
+msgstr "画像5"
+
+#: ukeirehouses/models.py:143 ukeirehouses/models.py:157
+msgid "main"
+msgstr "基本"
+
+#: ukeirehouses/models.py:144
+msgid "stayable"
+msgstr "宿泊に適しているグループ"
+
+#: ukeirehouses/models.py:145
+msgid "facility"
+msgstr "設備"
+
+#: ukeirehouses/models.py:146
+msgid "images"
+msgstr "画像"
+
+#: ukeirehouses/models.py:147
+msgid "location"
+msgstr "緯度経度"
+
+#: ukeirehouses/models.py:158
+msgid "address"
+msgstr "住所"
+
+#: ukeirehouses/models.py:159
+msgid "our details"
+msgstr "詳細"
+
+#: ukeirehouses/views.py:24
+msgid "message"
+msgstr "メッセージ"
+
+#, fuzzy
+#~ msgid "Action:"
+#~ msgstr "緯度経度"
+
+#, fuzzy
+#~ msgid "Clear selection"
+#~ msgstr "タイプ"
+
+#, fuzzy
+#~ msgid "Documentation"
+#~ msgstr "緯度経度"
+
+#, fuzzy
+#~ msgid "Add"
+#~ msgstr "住所"
+
+#, fuzzy
+#~ msgid "Action"
+#~ msgstr "緯度経度"
+
+#, fuzzy
+#~ msgid "E-mail address:"
+#~ msgstr "住所"
+
+#, fuzzy
+#~ msgid "e-mail address"
+#~ msgstr "住所"
+
+#, fuzzy
+#~ msgid "Enter a valid e-mail address."
+#~ msgstr "住所"
+
+#, fuzzy
+#~ msgid "user's email address"
+#~ msgstr "住所"
+
+#, fuzzy
+#~ msgid "IP address"
+#~ msgstr "住所"
+
+#, fuzzy
+#~ msgid "Gorontalo"
+#~ msgstr "国地方自治体等"
+
+#, fuzzy
+#~ msgid "Federal Government"
+#~ msgstr "国地方自治体等"
+
+#, fuzzy
+#~ msgid "E-mail address"
+#~ msgstr "住所"
+
+#, fuzzy
+#~ msgid "may"
+#~ msgstr "会社"

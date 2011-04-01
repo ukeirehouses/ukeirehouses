@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+{{ offer.title }}
+{% endblock %}
+
+{% block javascripts %}
+<script type='text/javascript' src='http://www.google.com/jsapi'></script>
+<script type='text/javascript'>google.load('jquery', '1.4.2');</script>
+<script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=false&language=ja' charset='UTF-8'></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+  var mapdiv = document.getElementById('map_canvas');
+  var geocoder = new google.maps.Geocoder();
+
+  {% if offer.location %}
+  var latlng = {{ offer.location }}.split(",");
+  {% else %}
+  var latlng = [35.6585873, 139.7454247];
+  {% endif %}
+
+  var org_lat = latlng[0];
+  var org_lng = latlng[1];
+
+  var point = new google.maps.LatLng(org_lat, org_lng);
+  var myOptions = {
+      zoom: 5,
+      center: point,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      scaleControl: true
+  };
+
+  var map = new google.maps.Map(mapdiv, myOptions);
+
+  var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(latlng[0], latlng[1]),
+      map: map,
+    });
+  });
+
+</script>
+
+{% endblock %}
+
+{% block pre-css %}
+<style type="text/css">
+#map_canvas {
+  width:100%;
+  height:300px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ offer.title }}</h2>
+<ul>
+{% if offer.image1 != "None" %}<li><img src="/property-thumb-image/{{ offer.id }}/1/" /></li>{% endif %}
+{% if offer.image2 != "None" %}<li><img src="/property-thumb-image/{{ offer.id }}/2/" /></li>{% endif %}
+{% if offer.image3 != "None" %}<li><img src="/property-thumb-image/{{ offer.id }}/3/" /></li>{% endif %}
+{% if offer.image4 != "None" %}<li><img src="/property-thumb-image/{{ offer.id }}/4/" /></li>{% endif %}
+{% if offer.image5 != "None" %}<li><img src="/property-thumb-image/{{ offer.id }}/5/" /></li>{% endif %}
+<li>{{ offer.get_classfication_display }}</li>
+<li>{{ offer.get_room_type_display }}</li>
+<li>{{ offer.property_type_display }}</li>
+<li>{{ offer.maximum_number_of_people_stay }}</li>
+<li>{{ offer.maximum_number_of_family_group }}</li>
+<li>{{ offer.possible_move_in_date }}</li>
+<li>{{ offer.maxmum_days_stay }}</li>
+<li>{{ offer.price_per_day }}</li>
+<li>{{ offer.stayable_person_male }}, {{ offer.stayable_person_female }}, {{ offer.stayable_person_baby }}, {{ offer.stayable_person_child }}, {{ offer.stayable_person_student }}, {{ offer.stayable_person_aged }}, {{ offer.stayable_person_family }}</li>
+<li>{{ offer.details }}</li>
+<li>{{ offer.zipcode }}</li>
+<li>{{ offer.address }}</li>
+<li><a href="{{ offer.url }}">{{ offer.url }}</a></li>
+<li>{{ offer.get_status_display }}</li>
+<li><a href="/send-message/request/{{ offer.id }}/">{% trans "send message" %}</a>
+</ul>
+<div id="map_canvas"></div>
+
+
+{% endblock %}

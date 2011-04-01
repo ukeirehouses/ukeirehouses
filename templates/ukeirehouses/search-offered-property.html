@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+{% trans 'Search Offer Property' %}
+{% endblock %}
+
+{% block javascripts %}
+<script type='text/javascript' src='http://www.google.com/jsapi'></script>
+<script type='text/javascript'>google.load('jquery', '1.4.2');</script>
+<script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=false&language=ja' charset='UTF-8'></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+  var mapdiv = document.getElementById('map_canvas');
+  var geocoder = new google.maps.Geocoder();
+  var org_lat = 35.6585873;
+  var org_lng = 139.7454247;
+
+  var point = new google.maps.LatLng(org_lat, org_lng);
+  var myOptions = {
+      zoom: 5,
+      center: point,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      scaleControl: true
+  };
+
+  var map = new google.maps.Map(mapdiv, myOptions);
+
+
+  var locations = [
+    {% for offer in offers %}
+    ['{{ offer.title }}', '{{ offer.location }}'],
+    {% endfor %}
+  ];
+
+  for(i=0; i<locations.length;i++) {
+    latlng = locations[i][1].split(",");
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(latlng[0], latlng[1]),
+      map: map,
+    });
+
+  }
+  });
+
+</script>
+
+{% endblock %}
+
+{% block pre-css %}
+<style type="text/css">
+#map_canvas {
+  width:100%;
+  height:300px;
+}
+</style>
+{% endblock %}
+
+{% block sidebar %}
+<form method="get" action="/search-offered-property/">
+<ul>
+  <li><label for="id_place">{% trans 'Place' %}</label><input id="id_place" type="text" name="place" /></li>
+  <li>{{ form.classfication.label_tag }} {{ form.classfication }}</li>
+  <li>{{ form.room_type.label_tag }} {{ form.room_type }}</li>
+  <li>{{ form.property_type.label_tag }} {{ form.property_type }}</li>
+  <li>{{ form.maximum_number_of_people_stay.label_tag }} {{ form.maximum_number_of_people_stay }}</li>
+  <li>{{ form.maximum_number_of_family_group.label_tag }} {{ form.maximum_number_of_family_group }}</li>
+  <li>{{ form.possible_move_in_date.label_tag }} {{ form.possible_move_in_date }}</li>
+  <li>{{ form.maximum_days_stay.label_tag }} {{ form.maximum_days_stay }}</li>
+  <li>{{ form.stayable_person_male.label_tag }} {{ form.stayable_person_male }}</li>
+  <li>{{ form.stayable_person_female.label_tag }} {{ form.stayable_person_female }}</li>
+  <li>{{ form.stayable_person_baby.label_tag }} {{ form.stayable_person_baby }}</li>
+  <li>{{ form.stayable_person_child.label_tag }} {{ form.stayable_person_child }}</li>
+  <li>{{ form.stayable_person_student.label_tag }} {{ form.stayable_person_student }}</li>
+  <li>{{ form.stayable_person_aged.label_tag }} {{ form.stayable_person_aged }}</li>
+  <li>{{ form.stayable_person_family.label_tag }} {{ form.stayable_person_family }}</li>
+  <li>{{ form.stayable_person_pet.label_tag }} {{ form.stayable_person_pet }}</li>
+</ul>
+<input type="submit" value="{% trans 'Search' %}" />
+</form>
+{% endblock %}
+
+{% block content %}
+<div id="map_canvas"></div>
+<h2>{% trans "Offers" %}</h2>
+count : {{ offers.count }}
+{% for offer in offers %}
+<h3><a href="/offer-details/{{ offer.id }}/">{{ offer.title }}</a></h3>
+{% if offer.user %}
+{{ offer.user }}
+{% endif %}
+<ul class="offer">
+<li>{{ offer.get_details_verbose_name }} : {{ offer.details }}</li>
+<ul class="property_image_list">
+{% if offer.image1 != "None" %}<li><a href="/property-image/{{ offer.id }}/1/"><img src="/property-thumb-image/{{ offer.id }}/1/" /></a></li>{% endif %}
+{% if offer.image2 != "None" %}<li><a href="/property-image/{{ offer.id }}/2/"><img src="/property-thumb-image/{{ offer.id }}/2/" /></a></li>{% endif %}
+{% if offer.image3 != "None" %}<li><a href="/property-image/{{ offer.id }}/3/"><img src="/property-thumb-image/{{ offer.id }}/3/" /></a></li>{% endif %}
+{% if offer.image4 != "None" %}<li><a href="/property-image/{{ offer.id }}/4/"><img src="/property-thumb-image/{{ offer.id }}/4/" /></a></li>{% endif %}
+{% if offer.image5 != "None" %}<li><a href="/property-image/{{ offer.id }}/5/"><img src="/property-thumb-image/{{ offer.id }}/5/" /></a></li>{% endif %}
+</ul>
+<li>{{ offer.get_classfication_verbose_name }} : {{ offer.get_classfication_display }}</li>
+<li>{{ offer.get_room_type_verbose_name }} : {{ offer.get_room_type_display }}</li>
+<li>{{ offer.get_property_type_verbose_name }} : {{ offer.property_type_display }}</li>
+<li>{{ offer.get_maximum_number_of_people_stay_verbose_name }} : {{ offer.maximum_number_of_people_stay }}</li>
+<li>{{ offer.get_maximum_number_of_family_group_verbose_name }} : {{ offer.maximum_number_of_family_group }}</li>
+<li>{{ offer.get_possible_move_in_date_verbose_name }} : {{ offer.possible_move_in_date }}</li>
+<li>{{ offer.get_maximum_days_stay_verbose_name }} : {{ offer.maximum_days_stay }}</li>
+<li>{{ offer.get_price_per_day_verbose_name }} : {{ offer.price_per_day }}</li>
+<li>
+  {% if offer.stayable_person_male %}{{ offer.get_stayable_person_male_verbose_name }},{% endif %}
+  {% if offer.stayable_person_female %}{{ offer.get_stayable_person_female_verbose_name }},{% endif %}
+  {% if offer.stayable_person_baby %}{{ offer.get_stayable_person_baby_verbose_name }},{% endif %}
+  {% if offer.stayable_person_child %}{{ offer.get_stayable_person_child_verbose_name }},{% endif %}
+  {% if offer.stayable_person_student %}{{ offer.get_stayable_person_student_verbose_name }},{% endif %}
+  {% if offer.stayable_person_aged %}{{ offer.get_stayable_person_aged_verbose_name }},{% endif %}
+  {% if offer.stayable_person_family %}{{ offer.get_stayable_person_family_verbose_name }}{% endif %}
+</li>
+<li>
+  {{ offer.get_facility_toilet_verbose_name }} : {{ offer.get_facility_toilet_display }},
+  {{ offer.get_facility_bath_verbose_name }} : {{ offer.get_facility_bath_display }},
+  {{ offer.get_facility_airconditioning_verbose_name }} : {{ offer.get_facility_airconditioning_display }},
+  {{ offer.get_facility_parking_verbose_name }} : {{ offer.get_facility_parking_display }},
+  {{ offer.get_facility_kitchen_verbose_name }} : {{ offer.get_facility_kitchen_display }},
+  {{ offer.get_facility_sleeping_gear_verbose_name }} : {{ offer.get_facility_sleeping_gear_display }}
+</li>
+<li>{{ offer.get_zipcode_verbose_name }} : {{ offer.zipcode }}</li>
+<li>{{ offer.get_address_verbose_name }} : {{ offer.address }}</li>
+<li><a href="{{ offer.url }}">{{ offer.url }}</a></li>
+<li>{{ offer.get_status_display }}</li>
+<li><a href="/send-message/request/{{ offer.id }}/">{% trans "send message" %}</a>
+
+</ul>
+{% endfor %}
+{% endblock %}

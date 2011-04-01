@@ -1,0 +1,73 @@
+{% load i18n %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+ <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+
+ <title>{% block title %}{% endblock %} - UKEIREHOUSES</title>
+ <link rel="stylesheet" href="/css/style.css" type="text/css" />
+ <link rel="stylesheet" href="/css/structure.css" type="text/css" />
+ <link rel="stylesheet" href="/css/form.css" type="text/css" />
+
+ {% block javascripts %}{% endblock %}
+ {% block pre-css %}{% endblock %}
+</head>
+<body>
+<div id="wrapper">
+ <!-- Header start -->
+ <div id="header">
+  <h1 id="title"><a href="/">UKEIREHOUSES</a></h1>
+  <div id="description">Offer or Find housing. </div>
+ </div>
+ <!-- Header end -->
+  <ul class="languages">
+    <li><a href="/lang/ja/">Japanese</a></li>
+    <li><a href="/lang/en/">English</a></li>
+  </ul>
+ <!-- navigation start -->
+ <div id="navigation">
+  <ul>
+   <li><a href="/offer-property/">{% trans "Offer Property" %}</a></li>
+   <li><a href="/search-offered-property/">{% trans "Search Offered Property" %}</a>
+   <li><a href="/request-property/">{% trans "Request Property" %}</a></li>
+   <li><a href="/search-requested-property/">{% trans "Search Requested Property" %}</a></li>
+   {% if user.is_authenticated %}
+   <li><a href="/accounts/logout/">{% trans 'logout' %}</a></li>
+   <li><a href="/profiles/{{ user.username }}">{% trans 'Profile' %}</a></li>
+   {% else %}
+   <li><a href="/accounts/login/">{% trans 'login' %}</a></li>
+   <li><a href="/accounts/register/">{% trans 'register' %}</a></li>
+   {% endif %}
+  </ul>    
+ </div>
+ <!-- navigation end -->
+ <!-- First sidebar start -->
+ <div id="firstSide" class="sidebar">
+   {% block sidebar %}
+   {% endblock %}
+ </div>
+ <!-- First sidebar end -->
+ <!-- Second sidebar end -->
+ <!-- Main contents start -->
+ <div id="contents">
+   {% block content %}{% endblock %}
+ </div>
+ <!-- Main contents end -->
+
+ <div id="footer">
+   <ul>
+     <li>
+     <li><a href="/private-policy/">Private Policy</a></li>
+     <li><a href="/legal-disclaimer/">Legal Disclaimer</a></li>
+     <li><a href="http://www.pawana.jp/">Supported by Pawana LLC.</a></li>     
+     <li><a href="mailto:togawamanabu@ukeirehouses.com">Contact</a></li>
+   </ul>
+ </div>
+
+</div>
+</body>
+</html>

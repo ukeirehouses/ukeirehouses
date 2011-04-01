@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+TOP
+{% endblock %}
+
+{% block content %}
+<p>{% trans "offers" %} : {{ offers_count }}</p>
+<p>{% trans "requests" %} : {{ requests_count }}</p>
+
+<h2>受け入れハウス</h2>
+<p>罹災者と支援者を結ぶための情報共有の場です。</p>
+{% endblock %}

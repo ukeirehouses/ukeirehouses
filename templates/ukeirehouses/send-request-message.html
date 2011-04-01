@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post" action="/send-message-action/">
+  <label for="message">message</label>
+  <input type="hidden" id="{{ id }}" />
+  <textarea id="id_message" rows="10" cols="40" name="message">message</textarea>
+  <input type="submit" />
+</form>
+{% endblock %}

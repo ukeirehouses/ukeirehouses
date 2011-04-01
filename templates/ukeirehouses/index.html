@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+TOP
+{% endblock %}
+
+{% block content %}
+<p>{% trans "offers" %} : {{ offers_count }}</p>
+<p>{% trans "requests" %} : {{ requests_count }}</p>
+
+<h2>受け入れハウス</h2>
+<p>罹災者と支援者を結ぶための情報共有の場です。</p>
+
+<h2>新着リスト</h2>
+
+<h3><a href="/offer-details/{{ offer.id }}/">{{ offer.title }}</a></h3>
+
+{% for offer in offers %}
+<ul>
+<li>{{ offer.get_classfication_verbose_name }} : {{ offer.get_classfication_display }}</li>
+<li>{{ offer.get_room_type_verbose_name }} : {{ offer.get_room_type_display }}</li>
+<li>{{ offer.get_property_type_verbose_name }} : {{ offer.property_type_display }}</li>
+<li>{{ offer.get_maximum_number_of_people_stay_verbose_name }} : {{ offer.maximum_number_of_people_stay }}</li>
+<li>{{ offer.get_maximum_number_of_family_group_verbose_name }} : {{ offer.maximum_number_of_family_group }}</li>
+<li>{{ offer.get_possible_move_in_date_verbose_name }} : {{ offer.possible_move_in_date }}</li>
+<li>{{ offer.get_maximum_days_stay_verbose_name }} : {{ offer.maximum_days_stay }}</li>
+<li>{{ offer.get_price_per_day_verbose_name }} : {{ offer.price_per_day }}</li>
+</ul>
+{% endfor %}
+
+
+{% endblock %}
