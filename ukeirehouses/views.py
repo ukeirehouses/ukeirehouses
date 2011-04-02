@@ -21,7 +21,7 @@ import logging
 
 def index(request):
     offers_count = PropertyOffer.objects.count()
-    offers = PropertyOffer.objects.all()[:10]
+    offers = PropertyOffer.objects.all().order_by('-created_date')[:10]
 
     requests_count = PropertyRequest.objects.count()
     return direct_to_template(request, 'ukeirehouses/index.html', {'offers_count':offers_count, 'requests_count':requests_count, 'offers': offers})
